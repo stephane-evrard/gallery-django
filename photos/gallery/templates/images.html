@@ -1,0 +1,78 @@
+{%extends 'layout.html'%}
+
+{% block content %}
+
+<div class="container mt-4">
+
+  <div class="row">
+    <div class="container-fluid">
+
+      <div class="grid">
+        <div class="grid-sizer"></div>
+        <div class="grid-item">
+          <h3><a class="font-weight-bold mb-3 black-text">{{ image.image_name }}</a></h3>
+
+          <img src="{{image.image_file.url}}" height="500px" width="100%" data-toggle="modal"
+            data-target="#basicExampleModal" />
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Modal starts here -->
+
+  <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModal3Label">{{ image.image_name }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+
+          <div class=""><a href="{{image.image_file.url}}" data-lightbox="photos">
+              <figure class="">
+                <img class="img-fluid" src="{{image.image_file.url}}">
+            </a>
+            <figcaption>
+              <!-- Image title -->
+              <h3><a class="font-weight-bold mb-3 black-text" href="/image/{{image.id}}">{{ image.image_name }}</a></h3>
+              <!-- Excerpt -->
+              <p class="dark-grey-text">{{ image.description }}</p>
+              <!-- Image data -->
+              <p>Posted: {{image.pub_date|timesince}} ago, <br> Location: <a href="/location/{{image.location}}">
+                  {{ image.location }} </a> <br>
+                <span> Category: <a href="/category/{{image.category}}"> {{ image.category}} </a></span>
+              </p>
+              <!-- The text field -->
+              Copy Image Link: <input class="form-control form-control-sm" type="text"
+                value="https://gallery.herokuapp.com/image/{{image.id}}" id="{{image.id}}" readonly="readonly">
+
+              <!-- The button used to copy the text -->
+
+
+            </figcaption>
+            </figure>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
